@@ -6,7 +6,7 @@
 #    By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 17:24:10 by xhamzall          #+#    #+#              #
-#    Updated: 2025/06/09 17:28:02 by xhamzall         ###   ########.fr        #
+#    Updated: 2025/06/10 18:39:14 by xhamzall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCLUDES = -I/usr/include
 NAME = philo
 
 SRCDIR = source/
-SRC = source/ \
+SRC = philo.c parsing.c \
 
 ALL_SRC = $(SRC)
 OBJ_DIR = obj

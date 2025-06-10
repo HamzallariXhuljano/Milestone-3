@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:15:09 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/10 18:15:39 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:37:36 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 int	main(int ac, char **av)
 {
-	
+	validate_args(ac, av);
 }
