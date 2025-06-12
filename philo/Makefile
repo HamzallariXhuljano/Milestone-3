@@ -6,28 +6,26 @@
 #    By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 17:24:10 by xhamzall          #+#    #+#              #
-#    Updated: 2025/06/10 18:39:14 by xhamzall         ###   ########.fr        #
+#    Updated: 2025/06/10 20:01:14 by xhamzall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -g
-
-# Includi la directory di include per readline
-INCLUDES = -I/usr/include
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -g -pthread
 
 NAME = philo
 
 SRCDIR = source/
-SRC = philo.c parsing.c \
+SRC = philo.c parsing.c
 
-ALL_SRC = $(SRC)
+ALL_SRC = $(addprefix $(SRCDIR), $(SRC))
 OBJ_DIR = obj
 
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(notdir $(ALL_SRC:.c=.o)))
 
 all: $(NAME)
 
-$(NAME):$(OBJECTS)
+$(NAME): $(OBJECTS)
 	@echo "Compiling Philo..."
 	@$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 	@echo ""
@@ -41,23 +39,20 @@ $(NAME):$(OBJECTS)
 	@echo "\033[1mAll time values must be in milliseconds.\033[0m"
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRCDIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@if [ -d "$(LIBFTDIR)" ]; then $(MAKE) clean -C $(LIBFTDIR); fi
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@$(MAKE) fclean -C $(LIBFTDIR)
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
 vall: all clean
-		valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --trace-children=yes ./philo
+	valgrind --tool=helgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./philo
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re vall

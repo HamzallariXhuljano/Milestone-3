@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 18:15:09 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/12 16:12:27 by xhamzall         ###   ########.fr       */
+/*   Created: 2025/06/12 17:16:25 by xhamzall          #+#    #+#             */
+/*   Updated: 2025/06/12 19:28:08 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-
-int	main(int ac, char **av)
+int	start_simulation(t_data *data)
 {
-	t_data data;
-	if (validate_args(ac, av) != 0)
-		return (-1);
-	if (init_data(&data, ac, av) != 0)
-		return (-1);
+
+}
+void	*philosopher_routine(void *arg)
+{
+	t_philo *philo;
+
+	philo = (t_philo *) arg;
+	while (check_running(philo->data) == 1)
+	{
+		take_forks(philo);
+		philo_eat(philo);
+		drop_forks(philo);
+		philo_sleep(philo);
+		philo_think(philo);
+	}
+	return (NULL);
 }

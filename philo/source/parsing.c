@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:10:21 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/10 18:42:46 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:38:59 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	validate_args(int ac, char **av)
 	{
 		if (is_valid_number(av[i]) != 0)
 			return (printf("Input not valid\n"), -1);
-		else if (i ==  1 && ft_atoi(av[i]) < 1)
+		if (i ==  1 && ft_atol(av[i]) < 1)
 			return (printf("Philosopher: number not valid\n"), -1);
-		else if (i == 2 && ft_atoi(av[i]) < 0)
+		if (i == 2 && ft_atol(av[i]) <= 0)
 			return (printf("Time die: number not valid\n"), -1);
-		else if (i == 3 && ft_atoi(av[i]) < 0)
+		if (i == 3 && ft_atol(av[i]) <= 0)
 			return (printf("Time eat: number not valid\n"), -1);
-		else if (i == 4 && ft_atoi(av[i]) < 0)
+		if (i == 4 && ft_atol(av[i]) <= 0)
 			return (printf("Time sleep: number not valid\n"), -1);
-		else if (ac == 6 && i == 5 && ft_atoi(av[i]) < 0)
+		if (ac == 6 && i == 5 && ft_atol(av[i]) <= 0)
 			return (printf("TMeals: number not valid\n"), -1);
 		i++;
 	}
@@ -54,11 +54,11 @@ int	is_valid_number(char *str)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	num;
+	long	i;
+	int		sign;
+	long	num;
 
 	i = 0;
 	sign = 1;

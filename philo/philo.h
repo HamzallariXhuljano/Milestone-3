@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:22:38 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/10 17:19:44 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/12 19:26:44 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct  s_philo
 
 typedef struct s_data
 {
-	int			philo_count;
+	long		philo_count;
 	long		time_to_die;
 	long		time_to_sleep;
 	long		time_to_eat;
 	int			meals_required;
 	int			simulation_running;
-	long		start_time;
+	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	simulation_mutex;
@@ -45,12 +45,11 @@ typedef struct s_data
 }t_data;
 
 int		validate_args(int ac, char **av);
-int		ft_atoi(const char *str);
+int		ft_atol(const char *str);
 int		is_valid_number(char *str);
-int		init_data(t_data *data, int argc, char **argv);
+int		init_data(t_data *data, int ac, char **av);
 int		init_philosophers(t_data *data);
 int		init_mutexes(t_data *data);
-void	assign_forks(t_data *data);
 int		start_simulation(t_data *data);
 void	*philosopher_routine(void *arg);
 void	*monitor_routine(void *arg);
@@ -67,11 +66,15 @@ long	get_current_time(void);
 long	get_time_diff(long start_time);
 void	precise_usleep(long microseconds);
 void	safe_print(t_philo *philo, char *message);
-void	cleanup_data(t_data *data);
 void	destroy_mutexes(t_data *data);
 void	join_threads(t_data *data);
 void	print_usage(void);
 void	print_error(char *message);
 int		error_exit(char *message);
+void	cleanup_mutex(t_data *data, int i);
+void	init_input(t_data *data, int ac, char **av);
+void	take_forks_even(t_philo *philo);
+void	take_forks_odd(t_philo *philo);
+int	check_running(t_data *data);
 
 #endif
