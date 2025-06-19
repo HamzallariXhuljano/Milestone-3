@@ -6,10 +6,9 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:22:38 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 18:23:39 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:39:33 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PHILO_H
 # define PHILO_H
@@ -18,33 +17,34 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-typedef struct  s_philo
+
+typedef struct s_philo
 {
-	int				id;
+	int							id;
 	pthread_mutex_t				*l_fork;
 	pthread_mutex_t				*r_fork;
-	long			last_meal;
-	int				meals_eaten;
-	pthread_t		thread;
-	struct s_data	*data;
+	long						last_meal;
+	int							meals_eaten;
+	pthread_t					thread;
+	struct s_data				*data;
 }	t_philo;
 
 typedef struct s_data
 {
-	long		philo_count;
-	long		time_to_die;
-	long		time_to_sleep;
-	long		time_to_eat;
-	int			meals_required;
-	int			simulation_running;
-	long		start_time;
+	long			philo_count;
+	long			time_to_die;
+	long			time_to_sleep;
+	long			time_to_eat;
+	int				meals_required;
+	int				simulation_running;
+	long			start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	simulation_mutex;
 	pthread_mutex_t	meal_mutex;
 	pthread_t		monitor_treahd;
 	t_philo			*philos;
-}t_data;
+}	t_data;
 
 int		validate_args(int ac, char **av);
 long	ft_atol(const char *str);
