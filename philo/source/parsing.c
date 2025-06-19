@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:10:21 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/12 15:38:59 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:36:38 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	validate_args(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		return (-1);
 	i = 1;
-	while (av[i])
+	while (i < ac)
 	{
 		if (is_valid_number(av[i]) != 0)
 			return (printf("Input not valid\n"), -1);

@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:22:38 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/12 19:26:44 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:15:11 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include <sys/time.h>
 # include <stdlib.h>
 # include <stdio.h>
-
+# include <unistd.h>
 typedef struct  s_philo
 {
 	int				id;
-	int				l_fork;
-	int				r_fork;
+	pthread_mutex_t				*l_fork;
+	pthread_mutex_t				*r_fork;
 	long			last_meal;
 	int				meals_eaten;
 	pthread_t		thread;
@@ -37,15 +37,17 @@ typedef struct s_data
 	long		time_to_eat;
 	int			meals_required;
 	int			simulation_running;
-	long long		start_time;
+	long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	simulation_mutex;
+	pthread_mutex_t	meal_mutex;
+	pthread_t		monitor_treahd;
 	t_philo			*philos;
 }t_data;
 
 int		validate_args(int ac, char **av);
-int		ft_atol(const char *str);
+long	ft_atol(const char *str);
 int		is_valid_number(char *str);
 int		init_data(t_data *data, int ac, char **av);
 int		init_philosophers(t_data *data);
@@ -75,6 +77,7 @@ void	cleanup_mutex(t_data *data, int i);
 void	init_input(t_data *data, int ac, char **av);
 void	take_forks_even(t_philo *philo);
 void	take_forks_odd(t_philo *philo);
-int	check_running(t_data *data);
+int		check_running(t_data *data);
+void	cleanup_all(t_data *data);
 
 #endif

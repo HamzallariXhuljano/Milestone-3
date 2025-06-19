@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:04:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/12 16:10:59 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:16:47 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_input(t_data *data, int ac, char **av)
 	int	i;
 
 	i = 1;
-	while (av[i])
+	while (i < ac)
 	{
 		if (i == 1)
 			data -> philo_count = ft_atol(av[i]);
@@ -74,6 +74,8 @@ int	init_mutexes(t_data *data)
 		pthread_mutex_destroy(&data->print_mutex);
 		return (-1);
 	}
+	if (pthread_mutex_init(&data->meal_mutex, NULL) != 0)
+		return (-1);
 	return (0);
 }
 

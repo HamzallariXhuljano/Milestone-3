@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:20:55 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/12 19:34:10 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:34:22 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,20 @@ long get_time_diff(long start_time)
 void	precise_usleep(long microseconds)
 {
 	long	start;
+	long	target;
 
-	start = get_current_time();
-	while(get_current_time() - microseconds)
-		usleep(100);
+	start = get_current_time() * 1000;
+	target = start + microseconds;
+	while((get_current_time() * 1000) < target)
+	{
+		usleep(50);
+	}
 }
 
-int	check_running(t_data *data)
+
+void	set_simulation_status(t_data *data, int status)
 {
-	int	running;
-
 	pthread_mutex_lock(&data->simulation_mutex);
-	running = data->simulation_running;
+	data->simulation_running = status;
 	pthread_mutex_unlock(&data->simulation_mutex);
-
-	return (running);
 }

@@ -6,7 +6,7 @@
 #    By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 17:24:10 by xhamzall          #+#    #+#              #
-#    Updated: 2025/06/10 20:01:14 by xhamzall         ###   ########.fr        #
+#    Updated: 2025/06/18 19:27:36 by xhamzall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -g -pthread
 NAME = philo
 
 SRCDIR = source/
-SRC = philo.c parsing.c
+SRC = philo.c parsing.c checks.c init.c philo_do_utils.c philo_do.c start.c utils.c utils1.c
 
 ALL_SRC = $(addprefix $(SRCDIR), $(SRC))
 OBJ_DIR = obj
