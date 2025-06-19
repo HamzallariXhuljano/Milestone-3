@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:11:53 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 18:05:03 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:36:46 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	check_death(t_data *data)
 {
 	int		i;
-	long	crt_time;
 	long	last_meal;
 
-	crt_time = get_current_time();
 	i = 0;
 	while (i < data->philo_count)
 	{
@@ -75,7 +73,7 @@ int	check_one_philo(t_data *data)
 		usleep(data->time_to_die * 1000);
 		printf("%ld 1 died\n", data->time_to_die);
 		cleanup_all(data);
-		return (-1);
+		return (0);
 	}
-	return (0);
+	return (-1);
 }

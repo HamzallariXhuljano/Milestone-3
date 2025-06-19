@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 18:15:09 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 18:08:49 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:26:26 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	main(int ac, char **av)
 		return (-1);
 	if (init_data(&data, ac, av) != 0)
 		return (-1);
+	if (check_one_philo(&data) == 0)
+		return (0);
 	if (start_simulation(&data) != 0)
 		return (cleanup_all(&data), -1);
-	if (check_one_philo(&data) == -1)
-		return (-1);
 	while (i < data.philo_count)
 	{
 		pthread_join(data.philos[i].thread, NULL);
