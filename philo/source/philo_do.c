@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 17:28:44 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 16:38:13 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:08:17 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,10 @@ void	philo_sleep(t_philo *philo)
 void	philo_think(t_philo *philo)
 {
 	safe_print(philo, "is thinking");
-
 }
 
 void	drop_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
-	pthread_mutex_lock(&philo->data->print_mutex);
-	pthread_mutex_unlock(&philo->data->print_mutex);
 }

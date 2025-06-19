@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:11:53 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 16:51:31 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:05:03 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_death(t_data *data)
 {
-	int	i;
+	int		i;
 	long	crt_time;
 	long	last_meal;
 
@@ -53,7 +53,7 @@ int	check_meals_completed(t_data *data)
 		i++;
 	}
 	if (completed_cnt == data->philo_count)
-		return(-1);
+		return (-1);
 	return (0);
 }
 
@@ -64,6 +64,18 @@ int	check_running(t_data *data)
 	pthread_mutex_lock(&data->simulation_mutex);
 	running = data->simulation_running;
 	pthread_mutex_unlock(&data->simulation_mutex);
-
 	return (running);
+}
+
+int	check_one_philo(t_data *data)
+{
+	if (data->philo_count == 1)
+	{
+		printf("0 1 has taken a fork\n");
+		usleep(data->time_to_die * 1000);
+		printf("%ld 1 died\n", data->time_to_die);
+		cleanup_all(data);
+		return (-1);
+	}
+	return (0);
 }

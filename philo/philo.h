@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:22:38 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 16:15:11 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:57:55 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,17 @@ void	take_forks(t_philo *philo);
 void	drop_forks(t_philo *philo);
 int		check_death(t_data *data);
 int		check_meals_completed(t_data *data);
-int		is_simulation_running(t_data *data);
 void	set_simulation_status(t_data *data, int status);
 long	get_current_time(void);
 long	get_time_diff(long start_time);
 void	precise_usleep(long microseconds);
 void	safe_print(t_philo *philo, char *message);
-void	destroy_mutexes(t_data *data);
-void	join_threads(t_data *data);
-void	print_usage(void);
-void	print_error(char *message);
-int		error_exit(char *message);
 void	cleanup_mutex(t_data *data, int i);
 void	init_input(t_data *data, int ac, char **av);
 void	take_forks_even(t_philo *philo);
 void	take_forks_odd(t_philo *philo);
 int		check_running(t_data *data);
 void	cleanup_all(t_data *data);
+int		check_one_philo(t_data *data);
 
 #endif

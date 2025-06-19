@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 17:16:25 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 16:46:11 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:10:28 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ int	start_simulation(t_data *data)
 	i = 0;
 	while (i < data->philo_count)
 	{
-		if(pthread_create(&data->philos[i].thread, NULL, philosopher_routine, &data->philos[i]))
+		if (pthread_create(&data->philos[i].thread, NULL,
+				philosopher_routine, &data->philos[i]))
 			return (-1);
 		i++;
 	}
 	if (pthread_create(&data->monitor_treahd, NULL, monitor_routine, data))
-        return (-1);
+		return (-1);
 	return (0);
 }
+
 void	*philosopher_routine(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *) arg;
 	if (philo -> id % 2 == 1)
@@ -44,20 +46,20 @@ void	*philosopher_routine(void *arg)
 	while (check_running(philo->data) == 1)
 	{
 		if (!check_running(philo->data))
-			break;
+			break ;
 		take_forks(philo);
 		if (!check_running(philo->data))
 		{
 			drop_forks(philo);
-			break;
+			break ;
 		}
 		philo_eat(philo);
 		drop_forks(philo);
 		if (!check_running(philo->data))
-			break;
+			break ;
 		philo_sleep(philo);
 		if (!check_running(philo->data))
-			break;
+			break ;
 		philo_think(philo);
 	}
 	return (NULL);
@@ -65,15 +67,15 @@ void	*philosopher_routine(void *arg)
 
 void	*monitor_routine(void *arg)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)arg;
-	while(check_running(data))
+	while (check_running(data))
 	{
-		if(check_death(data) == -1 || check_meals_completed(data) == -1)
+		if (check_death(data) == -1 || check_meals_completed(data) == -1)
 		{
 			set_simulation_status(data, 0);
-			break;
+			break ;
 		}
 		usleep(1000);
 	}

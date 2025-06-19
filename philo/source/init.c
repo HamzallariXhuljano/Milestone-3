@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:04:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 16:16:47 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:06:51 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	init_data(t_data *data, int ac, char **av)
 	data -> simulation_running = 1;
 	if (init_philosophers(data) != 0)
 		return (-1);
-
 	return (0);
 }
 
@@ -32,20 +31,19 @@ void	init_input(t_data *data, int ac, char **av)
 	while (i < ac)
 	{
 		if (i == 1)
-			data -> philo_count = ft_atol(av[i]);
-		else if ( i == 2)
-			data -> time_to_die = ft_atol(av[i]);
+			data->philo_count = ft_atol(av[i]);
+		else if (i == 2)
+			data->time_to_die = ft_atol(av[i]);
 		else if (i == 3)
-			data -> time_to_eat = ft_atol(av[i]);
+			data->time_to_eat = ft_atol(av[i]);
 		else if (i == 4)
-			data -> time_to_sleep = ft_atol(av[i]);
+			data->time_to_sleep = ft_atol(av[i]);
 		else if (i == 5)
-			data -> meals_required = ft_atol(av[i]);
+			data->meals_required = ft_atol(av[i]);
 		i++;
 	}
 	if (ac == 5)
-			data -> meals_required = - 1;
-
+		data -> meals_required = -1;
 }
 
 int	init_mutexes(t_data *data)
@@ -55,7 +53,6 @@ int	init_mutexes(t_data *data)
 	data -> forks = malloc (data -> philo_count * sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (-1);
-
 	i = 0;
 	while (i < data->philo_count)
 	{
@@ -67,12 +64,11 @@ int	init_mutexes(t_data *data)
 		i++;
 	}
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
-		return(cleanup_mutex(data, data->philo_count), -1);
+		return (cleanup_mutex(data, data->philo_count), -1);
 	if (pthread_mutex_init(&data->simulation_mutex, NULL) != 0)
 	{
 		cleanup_mutex(data, data->philo_count);
-		pthread_mutex_destroy(&data->print_mutex);
-		return (-1);
+		return (pthread_mutex_destroy(&data->print_mutex), -1);
 	}
 	if (pthread_mutex_init(&data->meal_mutex, NULL) != 0)
 		return (-1);

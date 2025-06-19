@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:10:21 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 16:36:38 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:07:14 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	validate_args(int ac, char **av)
 	{
 		if (is_valid_number(av[i]) != 0)
 			return (printf("Input not valid\n"), -1);
-		if (i ==  1 && ft_atol(av[i]) < 1)
+		if (i == 1 && ft_atol(av[i]) < 1)
 			return (printf("Philosopher: number not valid\n"), -1);
 		if (i == 2 && ft_atol(av[i]) <= 0)
 			return (printf("Time die: number not valid\n"), -1);
