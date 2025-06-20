@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:11:53 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 18:36:46 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:16:14 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int	check_death(t_data *data)
 		pthread_mutex_lock(&data->meal_mutex);
 		last_meal = data->philos[i].last_meal;
 		pthread_mutex_unlock(&data->meal_mutex);
-		if ((get_current_time() - last_meal) > data->time_to_die)
+		if ((get_current_time() - last_meal) > data->time_to_die
+			&& (data->philos[i].meals_eaten < data -> meals_required
+				|| data -> meals_required == -1))
 		{
-			safe_print(&data->philos[i], "is died");
+			safe_print(&data->philos[i], "died");
 			return (-1);
 		}
 		i++;
@@ -75,5 +77,13 @@ int	check_one_philo(t_data *data)
 		cleanup_all(data);
 		return (0);
 	}
+	return (-1);
+}
+
+int	check_runing_meals(t_philo *philo)
+{
+	if (!check_running(philo->data)
+		|| (philo->meals_eaten == philo->data->meals_required))
+		return (0);
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 17:28:44 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 18:08:17 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:07:05 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	take_forks(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
-	safe_print(philo, "is sleaping");
+	safe_print(philo, "is sleeping");
 	precise_usleep(philo->data->time_to_sleep * 1000);
 }
 

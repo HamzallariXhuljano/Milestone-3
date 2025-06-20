@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 17:16:25 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 18:10:28 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:06:46 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ void	*philosopher_routine(void *arg)
 		usleep(1000);
 	while (check_running(philo->data) == 1)
 	{
-		if (!check_running(philo->data))
+		if (check_runing_meals(philo) == 0)
 			break ;
 		take_forks(philo);
-		if (!check_running(philo->data))
+		if (check_runing_meals(philo) == 0)
 		{
 			drop_forks(philo);
 			break ;
 		}
 		philo_eat(philo);
 		drop_forks(philo);
-		if (!check_running(philo->data))
+		if (check_runing_meals(philo) == 0)
 			break ;
 		philo_sleep(philo);
-		if (!check_running(philo->data))
+		if (check_runing_meals(philo) == 0)
 			break ;
 		philo_think(philo);
 	}

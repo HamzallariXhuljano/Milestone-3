@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:22:38 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/06/19 18:39:33 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/06/20 19:15:10 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	take_forks_odd(t_philo *philo);
 int		check_running(t_data *data);
 void	cleanup_all(t_data *data);
 int		check_one_philo(t_data *data);
+int		check_runing_meals(t_philo *philo);
 
 #endif
